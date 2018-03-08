@@ -163,7 +163,10 @@ exports.editCmd = (rl, id) => {
 
 
 
+exports.playCmd = rl => {
+}
 
+exports.testCmd = rl => {
 
 
 
