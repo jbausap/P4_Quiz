@@ -55,7 +55,7 @@ exports.showCmd = (rl, id) => {
 		log(`[${colorear(quiz.id, 'magenta')}]:	${quiz.question} ${colorear( '=>', 'magenta')} ${quiz.answer}`); 
 	})
 	.catch(error => {
-		console.log(error.message);
+		errorlog(error.message);
 	})
 	.then(() => {
 		rl.prompt();
@@ -150,11 +150,11 @@ exports.editCmd = (rl, id) => {
 		log(` Se ha cambiado el quiz ${colorear(id,'magenta')} por: ${quiz.question} ${colorear('=>','magenta')} ${quiz.answer}`);
 	})
 	.catch(Sequelize.ValidationError, error => {
-		conlsole.log('El quiz es erroneo');
-		error.errors.forEach(({message}) => console.log(message));
+		errorlog('El quiz es erroneo');
+		error.errors.forEach(({message}) => errorlog(message));
 	})
 	.catch(error=> {
-		console.log(error.message);
+		errorlog(error.message);
 	})
 	.then(() => {
 		rl.prompt();
@@ -209,7 +209,7 @@ exports.playCmd = rl => {
 		return playOne();	
 	})
 	.catch( e => {
-		console.log( "Error:" + e);
+		errorlog( "Error:" + e);
 	})
 	.then(() => {
 		biglog(`${score}` , 'red');
@@ -231,20 +231,20 @@ exports.testCmd = (rl, id) => {
 		return makeQuestion(rl, `${quiz.question}`)
 		.then( ans => {
 			if( (ans.toLowerCase().trim()) === (quiz.answer.toLowerCase().trim())) {
-				console.log(`Su respuesta es correcta.`)
+				log(`Su respuesta es correcta.`)
 				biglog(' Correcta ', 'green')
 			} else {
-				console.log(`Su respuesta es incorrecta.`);
+				log(`Su respuesta es incorrecta.`);
 				biglog(' Incorrecta', 'red');
 			}
 		});
 	})
 	.catch(Sequelize.ValidationError, error => {
-		console.log('El quiz es erroneo');
-		error.errors.forEach(({message}) => console.log(message));
+		errorlog('El quiz es erroneo');
+		error.errors.forEach(({message}) => errorlog(message));
 	})
 	.catch(error=> {
-		console.log(error.message);
+		errorlog(error.message);
 	})
 	.then(() => {
 		rl.prompt();

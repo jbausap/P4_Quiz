@@ -18,7 +18,7 @@ const biglog = (msg, color) => {
 };
 
 const errorlog = (emsg) => {
-	console.log(`${colorear("Error", "red")}: ${colorear(colorear(emsg,"red"), "bgYellowBrigth")}`);
+	console.log(`${colorear("Error", "red")}: ${colorear(colorear(emsg,"yellow"), "yellow")}`);
 };
 
 exports = module.exports = {
