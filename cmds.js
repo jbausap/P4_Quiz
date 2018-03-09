@@ -169,8 +169,6 @@ exports.playCmd = rl => {
 	let toBePlayed=[];
 	
 
-	
-
 
 	const playOne = () => {
 
@@ -188,7 +186,7 @@ exports.playCmd = rl => {
 			let quiz = toBePlayed[pos];
 			toBePlayed.splice(pos,1)
 	
-			makeQuestion(rl, quiz.question)
+			makeQuestion(rl, `${quiz.question}?` )
 			.then(answer => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
@@ -214,6 +212,7 @@ exports.playCmd = rl => {
 		console.log( "Error:" + e);
 	})
 	.then(() => {
+		biglog(`${score}` , 'red');
 		rl.prompt();
 	})
 };
@@ -241,7 +240,7 @@ exports.testCmd = (rl, id) => {
 		});
 	})
 	.catch(Sequelize.ValidationError, error => {
-		conlsole.log('El quiz es erroneo');
+		console.log('El quiz es erroneo');
 		error.errors.forEach(({message}) => console.log(message));
 	})
 	.catch(error=> {
