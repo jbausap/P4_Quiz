@@ -91,7 +91,7 @@ exports.addCmd = rl => {
 	.then (q => {
 		return makeQuestion(rl, ' Introduzca la respuesta')
 		.then( a => {
-			return {question: 1, answer: a};
+			return {question: q, answer: a};
 		});
 	})
 	.then(quiz => {
@@ -164,7 +164,63 @@ exports.editCmd = (rl, id) => {
 
 
 exports.playCmd = rl => {
+	log('Jugar', 'red');
+	let score = 0;
+	let toBePlayed=[];
+	
+
+	
+
+
+	const playOne = () => {
+
+		return new Promise((resolve, reject) => {
+
+	
+			if (toBePlayed.length <= 0) {
+				log(`No hay nada más que preguntar.`);
+				log(`Fin del juego. Aciertos: ${score}`);
+				resolve();	
+				return;
+			}
+
+			let pos = Math.floor( Math.random()*toBePlayed.length)
+			let quiz = toBePlayed[pos];
+			toBePlayed.splice(pos,1)
+	
+			makeQuestion(rl, quiz.question)
+			.then(answer => {
+				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
+					score++;
+					log(` CORRECTO - Lleva ${score} aciertos`);
+					resolve(playOne());
+				} else {
+					log(` INCORRECTO`);
+					log(` Fin del juego. Aciertos: ${score}`);
+					resolve();
+				}
+			})
+		});
+	
+	}
+	models.quiz.findAll({raw: true})
+	.then(quizzes => {
+		toBePlayed = quizzes;
+	})
+	.then(() => {	
+		return playOne();	
+	})
+	.catch( e => {
+		console.log( "Error:" + e);
+	})
+	.then(() => {
+		rl.prompt();
+	})
 };
+
+
+
+	
 
 exports.testCmd = (rl, id) => {
 	validateId(id)
