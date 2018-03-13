@@ -195,7 +195,7 @@ exports.playCmd = rl => {
 				} else {
 					console.log(` INCORRECTO Fin del juego. Aciertos: ${score}`);
 					console.log(` Fin del juego. Aciertos: ${score}`);
-					console.log(`  ${score});
+					console.log(`  ${score}`);
 					resolve();
 				}
 			})
