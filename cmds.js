@@ -189,11 +189,9 @@ exports.playCmd = rl => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
 					log(`Su respuesta es correcta.`)
-					biglog(' Correcta ', 'green')
 					resolve(playOne());
 				} else {
 					log(`Su respuesta es incorrecta.`);
-					biglog(' Incorrecta', 'red');
 					resolve();
 				}
 			})
