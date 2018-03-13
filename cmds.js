@@ -177,6 +177,7 @@ exports.playCmd = rl => {
 	
 			if (toBePlayed.length <= 0) {
 				log(`No hay nada más que preguntar.`);
+				log(`Fin del juego. Aciertos: ${score}`);
 				resolve();	
 				return;
 			}
@@ -189,11 +190,11 @@ exports.playCmd = rl => {
 			.then(answer => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
-					console.log(` CORRECTO - Lleva ${score} aciertos`);
+					log(` CORRECTO - Lleva ${score} aciertos`);
 					resolve(playOne());
 				} else {
-					console.log(` INCORRECTO`);
-					console.log(` Fin del juego.`);
+					log(` INCORRECTO`);
+					log(` Fin del juego. Aciertos: ${score}`);
 					resolve();
 				}
 			})
@@ -211,8 +212,7 @@ exports.playCmd = rl => {
 		errorlog( "Error:" + e);
 	})
 	.then(() => {
-		console.log(`${score}` , 'red');
-		log(`Fin del juego.`);
+		biglog(`${score}` , 'red');
 		rl.prompt();
 	})
 };
