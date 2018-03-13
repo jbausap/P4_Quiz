@@ -188,10 +188,12 @@ exports.playCmd = rl => {
 			.then(answer => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
-					log(` CORRECT`);
+					log(`Su respuesta es correcta.`)
+					biglog(' Correcta ', 'green')
 					resolve(playOne());
 				} else {
-					log(` INCORRECT`);
+					log(`Su respuesta es incorrecta.`);
+					biglog(' Incorrecta', 'red');
 					resolve();
 				}
 			})
