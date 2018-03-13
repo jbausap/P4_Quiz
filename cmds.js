@@ -190,11 +190,12 @@ exports.playCmd = rl => {
 			.then(answer => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
-					log(` CORRECTO - Lleva ${score} aciertos`);
+					console.log(` CORRECTO - Lleva ${score} aciertos`);
 					resolve(playOne());
 				} else {
-					log(` INCORRECTO`);
-					log(` Fin del juego. Aciertos: ${score}`);
+					console.log(` INCORRECTO Fin del juego. Aciertos: ${score}`);
+					console.log(` Fin del juego. Aciertos: ${score}`);
+					console.log(`  ${score});
 					resolve();
 				}
 			})
