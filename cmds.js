@@ -190,11 +190,11 @@ exports.playCmd = rl => {
 			.then(answer => {
 				if (answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()) {
 					score++;
-					log(` CORRECTO - Lleva ${score} aciertos`);
+					log(` CORRECT - Lleva ${score} aciertos`);
 					resolve(playOne());
 				} else {
-					log(` INCORRECTO`);
-					log(` Fin del juego. Aciertos: ${score}`);
+					log(` INCORRECT`);
+					log(` Fin`);
 					resolve();
 				}
 			})
@@ -212,7 +212,7 @@ exports.playCmd = rl => {
 		errorlog( "Error:" + e);
 	})
 	.then(() => {
-		biglog(`${score}` , 'red');
+		console.log(`${score}` , 'red');
 		rl.prompt();
 	})
 };
