@@ -176,6 +176,7 @@ exports.playCmd = rl => {
 
 	
 			if (toBePlayed.length <= 0) {
+				console.log(`FIN . Aciertos: ${score}`);
 				resolve();	
 				return;
 			}
@@ -192,6 +193,7 @@ exports.playCmd = rl => {
 					resolve(playOne());
 				} else {
 					log(`Su respuesta es incorrecta.`);
+					console.log(`FIN . Aciertos: ${score}`);
 					resolve();
 				}
 			})
@@ -209,7 +211,6 @@ exports.playCmd = rl => {
 		errorlog( "Error:" + e);
 	})
 	.then(() => {
-		console.log(`FIN. Aciertos ${score}`);
 		rl.prompt();
 	})
 };
