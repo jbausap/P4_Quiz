@@ -238,8 +238,8 @@ exports.testCmd = ( socket, rl, id) => {
 		});
 	})
 	.catch(Sequelize.ValidationError, error => {
-		errorlog( socket, 'El quiz es erroneo');
-		error.errors.forEach(({message}) => errorlog( socket, message));
+		log( socket, 'El quiz es erroneo');
+		error.errors.forEach(({message}) => log( socket, message));
 	})
 	.catch(error=> {
 		log( socket, error.message);
